@@ -38,7 +38,13 @@ CPP11_FLAGS := -std=c++11
 CC  := clang
 CXX := clang++
 ifeq ($(PLATFORM),Darwin) # on mac
+    CC := clang
+    CXX := clang++
     CPP11_FLAGS := $(CPP11_FLAGS) -stdlib=libc++ -Wno-c++11-extensions
+endif
+ifeq ($(PLATFORM),Linux) # on linux
+    CC := gcc
+    CXX := g++
 endif
 RM  := rm
 CP  := cp
