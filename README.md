@@ -1,6 +1,16 @@
 Cork Boolean Library
 ====================
 
+Part added
+==========
+
+Add example directory which used [meshconv](http://www.cs.princeton.edu/~min/meshconv/) to convert stl to off and off to stl
+
+please use python bool.py -h to see how to use the example
+
+
+-- 
+
 Welcome to the Cork Boolean/CSG library.  Cork is designed to support Boolean operations between triangle meshes.
 
 Surprisingly, most Boolean/CSG libraries available today (early 2013) are not robust to numerical errors.  Floating-point errors often lead to segmentation faults or produce grossly inaccurate results (e.g. nothing) despite the code being provided .  The few libraries which are robust (e.g. CGAL) require the user to correctly configure the arithmetic settings to ensure robustness.
