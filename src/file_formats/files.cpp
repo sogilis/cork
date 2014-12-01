@@ -60,6 +60,8 @@ int writeTriMesh(string filename, FileMesh *mesh)
         return writeIFS(filename, mesh);
     else if (suffix == ".off")
         return writeOFF(filename, mesh);
+    else if (suffix == ".stl")
+        return writeSTL(filename, mesh);
     else
         return 1;
 }
