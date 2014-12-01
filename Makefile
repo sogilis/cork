@@ -119,6 +119,7 @@ MESH_HEADERS      := mesh.h mesh.decl.h \
                      mesh.tpp mesh.topoCache.tpp \
                      mesh.remesh.tpp mesh.isct.tpp mesh.bool.tpp
 ACCEL_HEADERS     := aabvh.h
+TESTS_HEADERS	  := tests/catch.hpp
 FILE_HEADERS      := files.h
 HEADERS           := \
     cork.h
@@ -157,6 +158,9 @@ DEBUG             := $(addprefix debug/,$(addsuffix .o,$(SRCS))) \
 
 MAIN_OBJ          := $(addprefix obj/,$(addsuffix .o,$(MAIN_SRC))) \
                      obj/isct/triangle.o
+
+TEST_OBJ			:= $(OBJ) tests/tests.cpp
+
 MAIN_DEBUG        := $(addprefix debug/,$(addsuffix .o,$(MAIN_SRC))) \
                      obj/isct/triangle.o
 
@@ -182,6 +186,9 @@ lib/lib$(LIB_TARGET_NAME)debug.a: $(DEBUG)
 bin/cork: $(MAIN_OBJ)
 	@echo "Linking cork command line tool"
 	@$(CXX) -o bin/cork $(MAIN_OBJ) $(LINK)
+
+bin/test-cork: $(TEST_OBJ)
+	@$(CXX) -o bin/test-cork $(TEST_OBJ) $(LINK)
 
 bin/off2obj: obj/off2obj.o
 	@echo "Linking off2obj"
@@ -231,6 +238,9 @@ include/%.h: src/%.h
 include/%.tpp: src/%.tpp
 	@echo "updating $@"
 	@cp $< $@
+
+tests: bin/test-cork
+	bin/test-cork
 
 # +---------------+
 # | cleaning rule |
